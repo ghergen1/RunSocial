@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Beta Signup – Runner Edition</title>
+  <title>Run Social Beta Signup</title>
+
+  <!-- Open Graph & Twitter for link previews -->
+  <meta property="og:title" content="Run Social" />
+  <meta name="twitter:title" content="Run Social" />
+  <meta property="og:description" content="Find run clubs near you, connect with other runners, grow and manage your team effortlessly." />
+  <meta name="twitter:description" content="Find run clubs near you, connect with other runners, grow and manage your team effortlessly." />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
@@ -18,9 +25,7 @@
       --light-border: #e2e8f0;
       --success: #10b981;
       --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
-      --gradient-accent: linear-gradient(135deg, var(--accent-purple), var(--primary-blue));
     }
-    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
@@ -34,8 +39,6 @@
       background-image:
         radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 20%),
         radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.05) 0%, transparent 20%);
-      position: relative;
-      overflow-x: hidden;
     }
     .container {
       width: 100%;
@@ -44,41 +47,40 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      position: relative;
-      z-index: 1;
     }
     .header {
-      padding: 40px 40px 30px;
+      padding: 40px;
       background: var(--gradient-primary);
       color: white;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 20%),
-        radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 25%);
-      transform: rotate(30deg);
-    }
-    .header-content { position: relative; z-index: 2; }
-    .logo { display: flex; justify-content: center; margin-bottom: 20px; }
     .logo-circle {
       width: 90px; height: 90px;
       background: rgba(255,255,255,0.2);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255,255,255,0.3);
     }
     .runner-icon { font-size: 42px; color: white; }
-    .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
-    .header p { font-size: 16px; font-weight: 300; opacity: 0.9; max-width: 320px; margin: 0 auto; }
-    .form-container { padding: 50px 40px 30px; }
+    .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .header p { font-size: 16px; font-weight: 300; opacity: 0.9; margin-bottom: 20px; }
+    .idea-list {
+      text-align: left;
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 30px;
+      color: white;
+    }
+    .idea-list li {
+      margin-bottom: 6px;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .form-container { padding: 40px; }
     .form-group { margin-bottom: 25px; position: relative; }
     .form-group label {
       display: block; margin-bottom: 8px;
@@ -96,8 +98,8 @@
       border: 2px solid var(--light-border);
       border-radius: 12px;
       font-size: 16px;
-      transition: all 0.3s ease;
       background: var(--light-bg);
+      transition: all 0.3s ease;
     }
     .form-group input:focus {
       border-color: var(--primary-blue);
@@ -105,7 +107,6 @@
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
       background: white;
     }
-    .form-group input::placeholder { color: #94a3b8; }
     .btn-submit {
       width: 100%;
       padding: 18px;
@@ -117,15 +118,9 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 15px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
       box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
+      position: relative; overflow: hidden;
     }
     .btn-submit:hover {
       transform: translateY(-2px);
@@ -134,47 +129,23 @@
     }
     .btn-submit::after {
       content: '';
-      position: absolute;
-      top: 0; left: 0;
+      position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform: translateX(-100%);
-      transition: 0.5s;
+      transform: translateX(-100%); transition: 0.5s;
       z-index: -1;
     }
     .btn-submit:hover::after { transform: translateX(100%); }
+
     .footer {
-      text-align: center;
-      padding: 25px 0;
-      color: var(--medium-text);
-      font-size: 14px;
+      text-align: center; padding: 20px;
+      color: var(--medium-text); font-size: 14px;
       border-top: 1px solid var(--light-border);
-      margin: 0 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
     }
-    .footer i { color: var(--success); }
-    .success-message {
-      text-align: center;
-      padding: 40px 30px;
-    }
-    .success-message .logo { margin-bottom: 30px; }
-    .success-message h2 {
-      margin-bottom: 15px;
-      color: var(--dark-text);
-      font-size: 24px;
-    }
-    .success-message p {
-      color: var(--medium-text);
-      line-height: 1.6;
-      margin-bottom: 5px;
-    }
+
     @media (max-width: 500px) {
       .container { max-width: 100%; }
-      .header, .form-container { padding: 30px 25px; }
-      .btn-submit { font-size: 14px; }
+      .header, .form-container { padding: 30px; }
       .runner-icon { font-size: 36px; }
     }
   </style>
@@ -182,15 +153,16 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-content">
-        <div class="logo">
-          <div class="logo-circle">
-            <i class="fas fa-running runner-icon"></i>
-          </div>
-        </div>
-        <h1>Accelerate With Our Beta</h1>
-        <p>Get early access to our innovative platform</p>
+      <div class="logo-circle">
+        <i class="fas fa-running runner-icon"></i>
       </div>
+      <h1><strong>Run Social</strong></h1>
+      <p>Your ultimate run‑club companion</p>
+      <ul class="idea-list">
+        <li>Find run clubs near you</li>
+        <li>Connect with other runners</li>
+        <li>Grow and manage your team effortlessly</li>
+      </ul>
     </div>
 
     <div class="form-container">
@@ -229,37 +201,34 @@
   </div>
 
   <script>
-    document.getElementById('betaForm')
-      .addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const form = e.target;
-        const data = new FormData(form);
-        const res = await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          const name = data.get('name');
-          const email = data.get('email');
-          const runs = data.get('runs_per_week');
-          document.querySelector('.form-container').innerHTML = \`
-            <div class="success-message">
-              <div class="logo">
-                <div class="logo-circle">
-                  <i class="fas fa-running runner-icon"></i>
-                </div>
-              </div>
-              <h2>You're In!</h2>
-              <p>Thanks, <strong>\${name}</strong>!</p>
-              <p>We’ve recorded that you run <strong>\${runs}</strong> times/week.</p>
-              <p>A confirmation has been sent to <strong>\${email}</strong>.</p>
-            </div>
-          \`;
-        } else {
-          alert('Oops—something went wrong. Please try again.');
-        }
+    document.getElementById('betaForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
       });
+      if (res.ok) {
+        const name = data.get('name');
+        const email = data.get('email');
+        const runs = data.get('runs_per_week');
+        document.querySelector('.form-container').innerHTML = `
+          <div class="success-message">
+            <div class="logo-circle">
+              <i class="fas fa-running runner-icon"></i>
+            </div>
+            <h2>You're In!</h2>
+            <p>Thanks, <strong>${name}</strong>!</p>
+            <p>We’ve recorded that you run <strong>${runs}</strong> times/week.</p>
+            <p>A confirmation has been sent to <strong>${email}</strong>.</p>
+          </div>
+        `;
+      } else {
+        alert('Oops—something went wrong. Please try again.');
+      }
+    });
   </script>
 </body>
 </html>
